@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Note } from "../models/note";
 import { NoteInput } from "../network/notes_api";
 import * as NotesApi from "../network/notes_api";
+import TextInputField from "./form/TextInputField";
 
 interface AddEditNoteDialogProps {
     noteToEdit?: Note,
@@ -38,34 +39,30 @@ const AddEditNoteDialog = ({ noteToEdit, onDismiss, onNoteSaved }: AddEditNoteDi
         <Modal show onHide={onDismiss}>
             <Modal.Header closeButton>
                 <Modal.Title>
-                   {noteToEdit ? "Edit note" : "Add note"}
+                    {noteToEdit ? "Edit note" : "Add note"}
                 </Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
                 <Form id="addEditNoteForm" onSubmit={handleSubmit(onSubmit)}>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Title</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Title"
-                            isInvalid={!!errors.title}
-                            {...register("title", { required: "Required" })}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            {errors.title?.message}
-                        </Form.Control.Feedback>
-                    </Form.Group>
+                    <TextInputField
+                        name="title"
+                        label="Title"
+                        type="text"
+                        placeholder="Title"
+                        register={register}
+                        registerOptions={{ required: "Required" }}
+                        error={errors.title}
+                    />
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>Text</Form.Label>
-                        <Form.Control
-                            as="textarea"
-                            rows={5}
-                            placeholder="Text"
-                            {...register("text")}
-                        />
-                    </Form.Group>
+                    <TextInputField
+                        name="text"
+                        label="Text"
+                        as="textarea"
+                        rows={5}
+                        placeholder="Text"
+                        register={register}
+                    />
                 </Form>
             </Modal.Body>
 
