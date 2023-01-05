@@ -17,6 +17,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.41.3",
     "react-icons": "^4.7.1",
+    "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.4",
     "web-vitals": "^2.1.4"
