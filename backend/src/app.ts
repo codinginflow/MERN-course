@@ -29,7 +29,7 @@ app.use(session({
 }));
 
 app.use("/api/users", userRoutes);
-app.use("/api/notes",  notesRoutes);
+app.use("/api/notes", requiresAuth, notesRoutes);
 
 app.use((req, res, next) => {
     next(createHttpError(404, "Endpoint not found"));
